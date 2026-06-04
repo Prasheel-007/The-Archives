@@ -72,12 +72,13 @@
         <main class="center-content">
           <nav class="breadcrumbs" style="margin-bottom: 20px; font-size: 0.9em; color: #8b949e;">
             <a href="{{ '/' | relative_url }}" style="color: #58a6ff; text-decoration: none;">Archives Home</a> 
-            {% assign crumbs = page.url | remove: '/index.html' | split: '/' | where_exp: "item", "item != ''" %}
+            {% assign crumbs = page.url | replace: '/index.html', '' | replace: 'index.html', '' | split: '/' | where_exp: "item", "item != ''" %}
             {% for crumb in crumbs %}
               {% if forloop.last %}
                 / <strong>{{ page.title | default: crumb | replace: '-', ' ' | capitalize }}</strong>
               {% else %}
-                / <a href="{% for i in (0..forloop.index0) %}/{{ crumbs[i] }}{% endfor %}/" style="color: #58a6ff; text-decoration: none;">{{ crumb | replace: '-', ' ' | capitalize }}</a>
+                {% capture crumb_path %}{% for i in (0..forloop.index0) %}/{{ crumbs[i] }}{% endfor %}/{% endcapture %}
+                / <a href="{{ crumb_path | relative_url }}" style="color: #58a6ff; text-decoration: none;">{{ crumb | replace: '-', ' ' | capitalize }}</a>
               {% endif %}
             {% endfor %}
           </nav>
