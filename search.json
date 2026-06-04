@@ -5,6 +5,12 @@ layout: none
   {% assign first = true %}
   {% for page in site.pages %}
     {% if page.title %}
+      {% assign path_parts = page.url | split: '/' %}
+      {% assign first_part = path_parts[1] %}
+      {% assign second_part = path_parts[2] %}
+      {% assign is_section_index = first_part != '' and second_part == '' and first_part != 'assets' %}
+      {% assign is_search_json = first_part == 'search.json' %}
+      {% unless is_section_index or is_search_json %}
       {% if first == false %},{% endif %}
       {
         "title"    : "{{ page.title | escape }}",
@@ -12,6 +18,7 @@ layout: none
         "category" : "{{ page.url | split: '/' | slice: 1 }}"
       }
       {% assign first = false %}
+      {% endunless %}
     {% endif %}
   {% endfor %}
 ]
