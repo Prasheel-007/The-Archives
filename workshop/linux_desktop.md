@@ -1,3 +1,4 @@
+---
 layout: default
 title: Demystifying the Linux Desktop
 permalink: /workshop/linux_desktop/

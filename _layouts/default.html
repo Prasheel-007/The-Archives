@@ -46,16 +46,18 @@
           <ul style="list-style: none; padding-left: 0;">
             {% assign grouped_pages = site.pages | group_by_exp: "item", "item.url | split: '/' | slice: 1" %}
             {% for group in grouped_pages %}
-              {% if group.name != "" and group.name != "assets" %}
+              {% if group.name != "" and group.name != "assets" and group.name != "search.json" %}
                 <li style="margin-bottom: 15px;">
-                  <strong class="dir-folder-name">{{ group.name }}</strong>
+                  <a class="dir-folder-name" href="{{ '/' | append: group.name | append: '/' | relative_url }}" style="font-weight: bold; text-transform: uppercase; color: inherit; text-decoration: none;">{{ group.name }}</a>
                   <ul style="list-style: none; padding-left: 10px; margin-top: 5px; border-left: 1px solid #30363d;">
                     {% for page in group.items %}
                       {% if page.title %}
                         {% assign page_url = page.url | split: '?' | first %}
                         {% assign page_file_name = page_url | split: '/' | last | downcase %}
                         {% assign page_ext = page_url | split: '.' | last %}
-                        {% unless page_file_name == 'search.json' or page_ext == 'xml' %}
+                        {% assign page_url_normalized = page_url | replace: 'index.html', '' %}
+                        {% assign group_root_url = '/' | append: group.name | append: '/' %}
+                        {% unless page_file_name == 'search.json' or page_ext == 'xml' or page_url_normalized == group_root_url %}
                         <li style="margin-bottom: 5px; padding-left: 10px;">
                           <a href="{{ page.url }}" style="color: #58a6ff; text-decoration: none; font-size: 0.95em;">{{ page.title }}</a>
                         </li>
@@ -71,13 +73,14 @@
 
         <main class="center-content">
           <nav class="breadcrumbs" style="margin-bottom: 20px; font-size: 0.9em; color: #8b949e;">
-            <a href="/" style="color: #58a6ff; text-decoration: none;">Archives Home</a> 
-            {% assign crumbs = page.url | remove: '/index.html' | split: '/' %}
-            {% for crumb in crumbs offset: 1 %}
+            <a href="{{ '/' | relative_url }}" style="color: #58a6ff; text-decoration: none;">Archives Home</a> 
+            {% assign crumbs = page.url | replace: '/index.html', '' | replace: 'index.html', '' | split: '/' | where_exp: "item", "item != ''" %}
+            {% for crumb in crumbs %}
               {% if forloop.last %}
                 / <strong>{{ page.title | default: crumb | replace: '-', ' ' | capitalize }}</strong>
               {% else %}
-                / <a href="{% assign crumb_limit = forloop.index | inline_diff: 0 %}{% for i in (1..forloop.index) %}/{{ crumbs[i] }}{% endfor %}/" style="color: #58a6ff; text-decoration: none;">{{ crumb | replace: '-', ' ' | capitalize }}</a>
+                {% capture crumb_path %}{% for i in (0..forloop.index0) %}/{{ crumbs[i] }}{% endfor %}/{% endcapture %}
+                / <a href="{{ crumb_path | relative_url }}" style="color: #58a6ff; text-decoration: none;">{{ crumb | replace: '-', ' ' | capitalize }}</a>
               {% endif %}
             {% endfor %}
           </nav>
@@ -222,13 +225,17 @@
     
     <script src="https://unpkg.com/simple-jekyll-search@latest/dest/simple-jekyll-search.min.js"></script>
     <script>
-      SimpleJekyllSearch({
-        searchInput: document.getElementById('search-input'),
-        resultsContainer: document.getElementById('results-container'),
-        json: '/search.json',
-        searchResultTemplate: '<li><a href="{url}">{title}</a> <br><span style="font-size: 0.8em; color: #8b949e;">Folder: {category}</span></li>',
-        noResultsText: '<li style="color: #8b949e;">No matching logs found...</li>'
-      })
+      if (typeof SimpleJekyllSearch === 'function') {
+        SimpleJekyllSearch({
+          searchInput: document.getElementById('search-input'),
+          resultsContainer: document.getElementById('results-container'),
+          json: '{{ "/search.json" | relative_url }}',
+          searchResultTemplate: '<li><a href="{url}">{title}</a> <br><span style="font-size: 0.8em; color: #8b949e;">Folder: {category}</span></li>',
+          noResultsText: '<li style="color: #8b949e;">No matching logs found...</li>'
+        })
+      } else {
+        document.getElementById('results-container').innerHTML = '<li style="color: #8b949e;">Search is temporarily unavailable. Please try again later.</li>';
+      }
     </script>
   </body>
 </html>
