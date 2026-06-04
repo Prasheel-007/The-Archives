@@ -44,7 +44,7 @@
         <aside id="left-sidebar" class="sidebar">
           <h3 style="margin-top: 0; border-bottom: 1px solid #30363d; padding-bottom: 10px; padding-left: 50px;">📂 Directory</h3>
           <ul style="list-style: none; padding-left: 0;">
-            {% assign grouped_pages = site.pages | group_by_exp: "item", "item.url | split: '/' | slice: 1" %}
+            {% assign grouped_pages = site.pages | group_by_exp: "item", "item.url | split: '/' | slice: 1 | first" %}
             {% for group in grouped_pages %}
               {% if group.name != "" and group.name != "assets" and group.name != "search.json" %}
                 <li style="margin-bottom: 15px;">
@@ -57,7 +57,8 @@
                         {% assign page_ext = page_url | split: '.' | last %}
                         {% assign page_url_normalized = page_url | replace: 'index.html', '' %}
                         {% assign group_root_url = '/' | append: group.name | append: '/' %}
-                        {% unless page_file_name == 'search.json' or page_ext == 'xml' or page_url_normalized == group_root_url %}
+                        {% assign group_root_url_without_trailing = '/' | append: group.name %}
+                        {% unless page_file_name == 'search.json' or page_ext == 'xml' or page_url_normalized == group_root_url or page_url_normalized == group_root_url_without_trailing %}
                         <li style="margin-bottom: 5px; padding-left: 10px;">
                           <a href="{{ page.url }}" style="color: #58a6ff; text-decoration: none; font-size: 0.95em;">{{ page.title }}</a>
                         </li>
