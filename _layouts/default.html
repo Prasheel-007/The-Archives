@@ -71,13 +71,13 @@
 
         <main class="center-content">
           <nav class="breadcrumbs" style="margin-bottom: 20px; font-size: 0.9em; color: #8b949e;">
-            <a href="/" style="color: #58a6ff; text-decoration: none;">Archives Home</a> 
-            {% assign crumbs = page.url | remove: '/index.html' | split: '/' %}
-            {% for crumb in crumbs offset: 1 %}
+            <a href="{{ '/' | relative_url }}" style="color: #58a6ff; text-decoration: none;">Archives Home</a> 
+            {% assign crumbs = page.url | remove: '/index.html' | split: '/' | where_exp: "item", "item != ''" %}
+            {% for crumb in crumbs %}
               {% if forloop.last %}
                 / <strong>{{ page.title | default: crumb | replace: '-', ' ' | capitalize }}</strong>
               {% else %}
-                / <a href="{% assign end_index = forloop.index0 | plus: 1 %}{% for i in (1..end_index) %}/{{ crumbs[i] }}{% endfor %}/" style="color: #58a6ff; text-decoration: none;">{{ crumb | replace: '-', ' ' | capitalize }}</a>
+                / <a href="{% for i in (0..forloop.index0) %}/{{ crumbs[i] }}{% endfor %}/" style="color: #58a6ff; text-decoration: none;">{{ crumb | replace: '-', ' ' | capitalize }}</a>
               {% endif %}
             {% endfor %}
           </nav>
@@ -231,7 +231,7 @@
           noResultsText: '<li style="color: #8b949e;">No matching logs found...</li>'
         })
       } else {
-        document.getElementById('results-container').innerHTML = '<li style="color: #8b949e;">Search functionality is currently unavailable.</li>';
+        document.getElementById('results-container').innerHTML = '<li style="color: #8b949e;">Search is temporarily unavailable. Please try again later.</li>';
       }
     </script>
   </body>
