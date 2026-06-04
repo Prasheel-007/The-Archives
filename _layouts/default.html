@@ -77,7 +77,7 @@
               {% if forloop.last %}
                 / <strong>{{ page.title | default: crumb | replace: '-', ' ' | capitalize }}</strong>
               {% else %}
-                / <a href="{% for i in (1..forloop.index) %}/{{ crumbs[i] }}{% endfor %}/" style="color: #58a6ff; text-decoration: none;">{{ crumb | replace: '-', ' ' | capitalize }}</a>
+                / <a href="{% assign end_index = forloop.index0 | plus: 1 %}{% for i in (1..end_index) %}/{{ crumbs[i] }}{% endfor %}/" style="color: #58a6ff; text-decoration: none;">{{ crumb | replace: '-', ' ' | capitalize }}</a>
               {% endif %}
             {% endfor %}
           </nav>
