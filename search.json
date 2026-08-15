@@ -2,23 +2,25 @@
 layout: none
 ---
 [
+  {% assign chapter_slugs = "forge,chronicles,artifacts,gallery,workshop,infra" | split: "," %}
   {% assign first = true %}
   {% for page in site.pages %}
     {% if page.title %}
       {% assign path_parts = page.url | split: '/' %}
-      {% assign first_part = path_parts[1] %}
-      {% assign second_part = path_parts[2] %}
-      {% assign is_section_index = first_part != '' and second_part == '' and first_part != 'assets' %}
-      {% assign is_search_json = first_part == 'search.json' %}
-      {% unless is_section_index or is_search_json %}
-      {% if first == false %},{% endif %}
-      {
-        "title"    : "{{ page.title | escape }}",
-        "url"      : "{{ page.url }}",
-        "category" : "{{ page.url | split: '/' | slice: 1 }}"
-      }
-      {% assign first = false %}
-      {% endunless %}
+      {% assign chap_slug = path_parts[1] %}
+      {% assign doc_slug = path_parts[2] %}
+      {% if chapter_slugs contains chap_slug and doc_slug != '' and doc_slug != 'index.html' %}
+        {% assign chap_index_url = '/' | append: chap_slug | append: '/' %}
+        {% assign chap_index_page = site.pages | where: "url", chap_index_url | first %}
+        {% assign chap_category = chap_index_page.title | default: chap_slug | capitalize %}
+        {% if first == false %},{% endif %}
+        {
+          "title"    : "{{ page.title | escape }}",
+          "url"      : "{{ page.url }}",
+          "category" : "{{ chap_category }}"
+        }
+        {% assign first = false %}
+      {% endif %}
     {% endif %}
   {% endfor %}
 ]

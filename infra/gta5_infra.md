@@ -1,6 +1,6 @@
 ---
 layout: default
-title: The 3-Day Infrastructure Trial (GTA V)
+title: "The 3-Day Infrastructure Trial: GTA V on a Radeon APU"
 permalink: /infra/gta5_infra/
 ---
 

@@ -1,10 +1,10 @@
 ---
 layout: default
-title: Infrastructure
+title: Infra
 ---
-# ☁️ Infrastructure
+# ☁️ Infra
 
-> Documentation of site management, SEO logic, and the personal systems that run the Digital Me.
+> The systems and foundations behind the work.
 
 ## System Logs
 * **[The OS Migration](/infra/migration_to_os/)** - A technical log of transitioning from Windows to an Arch based Linux environment, covering bootloader conflicts and storage architecture.

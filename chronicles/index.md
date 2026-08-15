@@ -4,9 +4,9 @@ title: Chronicles
 ---
 # 📖 Chronicles
 
-> A detailed record of hardware exploration, dismantling, and the struggle of repairing electronics.
+> The journeys, changes, and turning points behind the things I experience.
 
-## Hardware Logs
+## Journeys & Experiments
 * *(Soon will be updated....)*
 
 ---

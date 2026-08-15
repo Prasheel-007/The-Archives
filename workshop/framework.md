@@ -1,6 +1,6 @@
 ---
 layout: default
-title: Flutter vs React Native
+title: Mobile Framework Insights
 permalink: /workshop/framework/
 ---
 

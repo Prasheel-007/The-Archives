@@ -4,13 +4,13 @@ layout: default
 # 📂 The Chapters
 
 ### 🛠️ [Forge](/forge/)
-The evolution of my software projects. This section covers the experience of building, the design logic, and the "behind the scenes" of how my applications grow from ideas into tools.
+The place where ideas become things. This section documents what I build, develop, and create, from software and applications to systems, tools, and other technical projects, along with the decisions, design, and work behind them.
 
 ### 📖 [Chronicles](/chronicles/)
-A detailed log of hardware exploration. Here I document the process of dismantling electronics to understand their internal logic and the step-by-step struggle of troubleshooting and repairing broken gear.
+The record of things that unfold over time. This section follows the evolution of projects, experiments, journeys, and experiences, preserving the changes, setbacks, discoveries, and turning points that shape where they eventually lead.
 
 ### 🔮 [Artifacts](/artifacts/)
-A collection of hidden gems and digital secrets. This covers underrated apps, utilities and tools that provide unique capabilities or improve technical workflows.
+A curated collection of things worth preserving. This section documents notable tools, technologies, resources, discoveries, references, and other digital artifacts that have contributed something useful, interesting, or meaningful to the archive.
 
 ### 🖼️ [Gallery](/gallery/)
 The visual record. A space for technical snapshots, clips of project milestones, and labeled photos of hardware components. It provides a quick visual overview of the journey.
@@ -19,7 +19,7 @@ The visual record. A space for technical snapshots, clips of project milestones,
 The technical "How-To" library. Practical implementation for setting up development environments, optimizing AI workflows, and documenting the specific solutions to bugs and errors I encounter.
 
 ### ☁️ [Infra](/infra/)
-The invisible architecture. This section documents the unseen work required to keep the Digital Me running—from solving complex domain and hosting errors to optimizing SEO and search presence. It is a record of the technical troubleshooting and systems management that happens behind the curtain.
+The systems and environments that support the work. This section documents operating systems, development environments, hardware, services, configurations, infrastructure, and other technical foundations that enable projects and workflows to function.
 
 ---
 

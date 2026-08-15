@@ -1,6 +1,6 @@
 ---
 layout: default
-title: GTA V on Linux (The Tuning Blueprint)
+title: "The Tuning Blueprint: GTA V on Linux"
 permalink: /workshop/gta5_in_linux/
 ---
 

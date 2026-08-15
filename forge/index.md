@@ -4,9 +4,9 @@ title: Forge
 ---
 # 🛠️ The Forge
 
-> Documentation of the evolution, design logic, and "behind the scenes" of my application projects.
+> The things I build, develop, and bring to life.
 
-## Project Logs
+## Builds & Creations
 * *(No projects documented yet. Soon will be updated.)*
 
 ---

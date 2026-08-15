@@ -4,7 +4,7 @@ title: Artifacts
 ---
 # 🔮 Artifacts
 
-> A collection of hidden digital gems, underrated tools, and secret ecosystem products.
+> The tools, discoveries, and resources worth keeping.
 
 ## The Collection
 * **[The Hidden Google Ecosystem](/artifacts/google_ecosystem/)** - Exploring Google's silent releases and secret tools.
